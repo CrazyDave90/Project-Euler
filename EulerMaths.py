@@ -22,12 +22,8 @@ def listFactors(number):
     return factors
 
 
-def isPrime(number):
-    return gmpy2.is_prime(number)
-
-
 def listPrimeFactors(number):
-    return [n for n in listFactors(number) if isPrime(n)]
+    return [n for n in listFactors(number) if gmpy2.is_prime(n)]
 
 
 def nthPrime(n):
@@ -37,12 +33,3 @@ def nthPrime(n):
         result = gmpy2.next_prime(result)
         numberOfPrime += 1
     return int(result)
-
-
-def greatestCommonFactor(a, b):
-    return int(gmpy2.gcd(a, b))
-
-
-def leastCommonMultiple(a, b):
-    return int(gmpy2.lcm(a, b))
-
