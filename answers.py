@@ -19,7 +19,7 @@ def problem2():
         if (value % 2 == 0):
             answer += value
     return answer
-            
+
 
 def problem3():
     return max(eulermaths.listPrimeFactors(600851475143))
@@ -70,7 +70,7 @@ def problem9():
     for a in range (1, 334):
         for b in range(i, 666):
             if (math.pow(a, 2) + math.pow(b, 2) == math.pow(1000-(a+b), 2)):
-                # constraint: since a+b+c = 1000, c = 1000-(a+b)
+                # constraints: a+b+c = 1000, c = 1000-(a+b) and a^2 + b^2 = c^2
                 return a*b*(1000-(a+b))
 
 
@@ -81,3 +81,16 @@ def problem10():
         answer += prime
         prime = int(gmpy2.next_prime(prime))
     return answer
+
+
+def problem20():
+    return sum([int(digit) for digit in str(math.factorial(100))])
+
+
+def problem25():
+    term = 0
+    value = 0
+    while (len(str(value)) < 1000):
+        term += 1
+        value = eulermaths.fibonacci(term)
+    return term
