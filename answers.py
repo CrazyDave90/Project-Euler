@@ -43,9 +43,9 @@ def problem6():
     sumSquares = 0
     squareSum = 0
     for i in range(1, 101):
-        sumSquares += math.pow(i, 2)
+        sumSquares += i**2
         squareSum += i
-    squareSum = math.pow(squareSum, 2)
+    squareSum = squareSum**2
     return squareSum - sumSquares
 
 
@@ -68,8 +68,8 @@ def problem8():
 
 def problem9():
     for a in range (1, 334):
-        for b in range(i, 666):
-            if (math.pow(a, 2) + math.pow(b, 2) == math.pow(1000-(a+b), 2)):
+        for b in range(a, 666):
+            if (a**2 + b**2 == (1000-a-b)**2):
                 # constraints: a+b+c = 1000, c = 1000-(a+b) and a^2 + b^2 = c^2
                 return a*b*(1000-(a+b))
 
@@ -94,3 +94,18 @@ def problem25():
         term += 1
         value = eulermaths.fibonacci(term)
     return term
+
+
+def problem27():
+    answer = 0
+    answerCount = 0
+    primeCount = 0
+    for i in range(-999, 1000):
+        for j in range(-999, 1000):
+            while (gmpy2.is_prime(abs(primeCount**2 + i*primeCount + j))):
+                primeCount += 1
+            if (primeCount > answerCount):
+                answerCount = primeCount
+                answer = i*j
+            primeCount = 0
+    return answer

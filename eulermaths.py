@@ -5,7 +5,7 @@ import math
 fibCache = {0:0, 1:1, 2:1, 3:2, 4:3, 5:5, 6:8, 7:13, 8:21, 9:34}
 
 
-def listMultiples(multiple=1, lowerBound=0, upperBound=math.pow(10, 6)):
+def listMultiples(multiple=1, lowerBound=0, upperBound=10**6):
     return [i for i in range(lowerBound, upperBound, multiple)]
 
 
@@ -17,7 +17,7 @@ def fibonacci(number):
 
 def listFactors(number):
     factors = [number]
-    for i in range(2, int(math.sqrt(number))+1):
+    for i in range(2, int(number**0.5)+1):
         if (number % i == 0):
             factors.append(i)
             factors.append(int(number/i))
