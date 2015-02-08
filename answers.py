@@ -12,8 +12,8 @@ def problem1():
 
 def problem2():
     answer = 0
-    for n in range(2, 35, 1):
-        value = eulermaths.fibonacci(n)
+    for i in range(2, 35):
+        value = eulermaths.fibonacci(i)
         if (value % 2 == 0):
             answer += value
     return answer
