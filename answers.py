@@ -23,7 +23,7 @@ def problem2():
 
 
 def problem3():
-    return max(eulermaths.listPrimeFactors(600851475143))
+    return max(eulermaths.list_prime_factors(600851475143))
 
 
 def problem4():
@@ -51,15 +51,15 @@ def problem6():
 
 
 def problem7():
-    return eulermaths.nthPrime(10001)
+    return eulermaths.nth_prime(10001)
 
 
 def problem8():
     answer = 0
     digits = []
-    with open('p8.txt', 'r') as number:   # the file containing the 1000 digit number
+    with open('p8.txt', 'r') as number: 
         digits.extend(number.read())
-        digits = list(map(int, digits))   # easiest to iterate over list of digits
+        digits = list(map(int, digits))
     for i in range(0, 988):
         digitProduct = functools.reduce(operator.mul, digits[i:i+13])
         if (digitProduct > answer):
@@ -70,7 +70,7 @@ def problem8():
 def problem9():
     for a in range (1, 334):
         for b in range(a, 666):
-            if (a**2 + b**2 == (1000-a-b)**2):   # constraints: a+b+c = 1000 and a^2 + b^2 = c^2
+            if (a**2 + b**2 == (1000-a-b)**2):
                 return a*b*(1000-(a+b))
 
 
@@ -94,7 +94,7 @@ def problem20():
 def problem21():
     answer = 0
     for i in range(1, 10000):
-        if (eulermaths.isAmicable(i)):
+        if (eulermaths.is_amicable(i)):
             answer += i
     return answer
 
@@ -179,3 +179,18 @@ def problem39():
             answer = p
             answerCount = count
     return answer
+
+
+def problem42():
+    answer = 0
+    triangleNumbers = [0.5*n*(n+1) for n in range(1, 25)]
+    with open('p42.txt', 'r') as file:
+        wordList = file.read().replace("\"", "").split(",")
+    for word in wordList:
+        wordValue = 0
+        for letter in word:
+            wordValue += eulermaths.letter_value(letter)
+        if (wordValue in triangleNumbers):
+            answer += 1
+    return answer
+        
