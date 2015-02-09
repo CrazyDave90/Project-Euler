@@ -47,3 +47,11 @@ def is_amicable(number):
 
 def letter_value(letter):
     return ord(letter.upper()) - 64
+
+
+def word_value(word):
+    wordValue = 0
+    for letter in word.upper():
+        wordValue += letter_value(letter)
+    return wordValue
+    

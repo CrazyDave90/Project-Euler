@@ -83,6 +83,22 @@ def problem10():
     return answer
 
 
+def problem12():
+    triangleTerm = 1
+    factors = 0
+    while (factors < 500):
+        triangleNumber = 0.5*triangleTerm*(triangleTerm+1)
+        factors = len(eulermaths.list_factors(triangleNumber))
+        triangleTerm += 1
+    return triangleNumber
+
+
+def problem13():
+    with open('p13.txt', 'r') as file:
+        numberList = list(map(int, file.read().split("\n")))
+    return str(sum(numberList))[:10]
+
+
 def problem16():
     return sum([int(digit) for digit in str(2**1000)])
         
@@ -96,6 +112,19 @@ def problem21():
     for i in range(1, 10000):
         if (eulermaths.is_amicable(i)):
             answer += i
+    return answer
+
+
+def problem22():
+    answer = 0
+    nameCount = 1
+    with open('p22.txt', 'r') as names:
+        nameList = names.read().replace("\"", "").split(",")
+        nameList = sorted(nameList)
+    for name in nameList:
+        nameValue = eulermaths.word_value(name)*nameCount
+        answer += nameValue
+        nameCount += 1
     return answer
 
             
@@ -187,9 +216,7 @@ def problem42():
     with open('p42.txt', 'r') as file:
         wordList = file.read().replace("\"", "").split(",")
     for word in wordList:
-        wordValue = 0
-        for letter in word:
-            wordValue += eulermaths.letter_value(letter)
+        wordValue = eulermaths.word_value(word)
         if (wordValue in triangleNumbers):
             answer += 1
     return answer
