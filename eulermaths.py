@@ -35,3 +35,11 @@ def nthPrime(n):
         result = gmpy2.next_prime(result)
         numberOfPrime += 1
     return int(result)
+
+
+def sumFactors(number):
+    return 1 + sum(listFactors(number)) - number
+
+
+def isAmicable(number):
+    return sumFactors(sumFactors(number)) == number and sumFactors(number) != number

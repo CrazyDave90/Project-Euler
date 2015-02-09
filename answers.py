@@ -3,6 +3,7 @@ import functools
 import gmpy2
 import math
 import operator
+import itertools
 
 
 def problem1():
@@ -82,10 +83,22 @@ def problem10():
     return answer
 
 
+def problem16():
+    return sum([int(digit) for digit in str(2**1000)])
+        
+
 def problem20():
     return sum([int(digit) for digit in str(math.factorial(100))])
 
 
+def problem21():
+    answer = 0
+    for i in range(1, 10000):
+        if (eulermaths.isAmicable(i)):
+            answer += i
+    return answer
+
+            
 def problem25():
     term = 0
     value = 0
@@ -110,6 +123,14 @@ def problem27():
     return answer
 
 
+def problem29():
+    answer = []
+    for a in range(2, 101):
+        for b in range(2, 101):
+            answer.append(a**b)
+    return len(set(answer))
+
+
 def problem30():
     answer = 0
     for i in range(32, 295489):
@@ -126,4 +147,35 @@ def problem34():
     for i in range(25, 2177282):   
         if (sum([math.factorial(int(j)) for j in str(i)]) == i):
             answer += i
+    return answer
+
+
+def problem35():
+    answer = 1
+    for i in range(3, 1000000, 2):
+        number = str(i)
+        isCircular = True
+        for j in range(0, len(number)):
+            if (not gmpy2.is_prime(int(number))):
+                isCircular = False
+                break
+            number = number[1:] + number[:1]
+        if (isCircular):
+            answer += 1
+    return answer
+
+
+def problem39():
+    answer = 0
+    answerCount = 0
+    for p in range (1, 1001):
+        count = 0
+        for a in range(1, int(p/3)):
+            b = int((p*(p - 2*a))/(2*(p - a)))
+            c = int(p-a-b)
+            if (a**2 + b**2 == c**2):
+                count += 1
+        if (count > answerCount):
+            answer = p
+            answerCount = count
     return answer
