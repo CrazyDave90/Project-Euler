@@ -56,9 +56,9 @@ def problem7():
 def problem8():
     answer = 0
     digits = []
-    with open('p8.txt', 'r') as number: # the file containing the 1000 digit number
+    with open('p8.txt', 'r') as number:   # the file containing the 1000 digit number
         digits.extend(number.read())
-        digits = list(map(int, digits)) # easiest to iterate over list of digits
+        digits = list(map(int, digits))   # easiest to iterate over list of digits
     for i in range(0, 988):
         digitProduct = functools.reduce(operator.mul, digits[i:i+13])
         if (digitProduct > answer):
@@ -69,8 +69,7 @@ def problem8():
 def problem9():
     for a in range (1, 334):
         for b in range(a, 666):
-            if (a**2 + b**2 == (1000-a-b)**2):
-                # constraints: a+b+c = 1000, c = 1000-(a+b) and a^2 + b^2 = c^2
+            if (a**2 + b**2 == (1000-a-b)**2):   # constraints: a+b+c = 1000 and a^2 + b^2 = c^2
                 return a*b*(1000-(a+b))
 
 
@@ -108,4 +107,23 @@ def problem27():
                 answerCount = primeCount
                 answer = i*j
             primeCount = 0
+    return answer
+
+
+def problem30():
+    answer = 0
+    for i in range(32, 295489):
+        digitSum = 0
+        for j in str(i):
+            digitSum += int(j)**5
+        if (digitSum == i):
+            answer += i
+    return answer
+
+
+def problem34():
+    answer = 0
+    for i in range(25, 2177282):   
+        if (sum([math.factorial(int(j)) for j in str(i)]) == i):
+            answer += i
     return answer
