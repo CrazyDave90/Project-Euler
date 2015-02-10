@@ -1,29 +1,28 @@
-import eulermaths
-import functools
-import gmpy2
-import math
-import operator
-import itertools
+from eulermaths import *
+from gmpy2 import is_prime, next_prime, lcm
+from math import factorial
+from operator import mul
+from functools import reduce
 
 
 def problem1():
     answer = []
-    answer.extend(eulermaths.listMultiples(3, upperBound=1000))
-    answer.extend(eulermaths.listMultiples(5, upperBound=1000))
+    answer.extend(list_multiples(3, upperBound=1000))
+    answer.extend(list_multiples(5, upperBound=1000))
     return sum(set(answer))
 
 
 def problem2():
     answer = 0
     for i in range(2, 35):
-        value = eulermaths.fibonacci(i)
+        value = fibonacci(i)
         if (value % 2 == 0):
             answer += value
     return answer
 
 
 def problem3():
-    return max(eulermaths.list_prime_factors(600851475143))
+    return max(list_prime_factors(600851475143))
 
 
 def problem4():
@@ -37,7 +36,7 @@ def problem4():
 
 
 def problem5():
-    return int(functools.reduce(gmpy2.lcm, range(2, 21)))
+    return int(reduce(lcm, range(2, 21)))
 
 
 def problem6():
@@ -51,7 +50,7 @@ def problem6():
 
 
 def problem7():
-    return eulermaths.nth_prime(10001)
+    return nth_prime(10001)
 
 
 def problem8():
@@ -61,7 +60,7 @@ def problem8():
         digits.extend(number.read())
         digits = list(map(int, digits))
     for i in range(0, 988):
-        digitProduct = functools.reduce(operator.mul, digits[i:i+13])
+        digitProduct = reduce(mul, digits[i:i+13])
         if (digitProduct > answer):
             answer = digitProduct
     return answer
@@ -79,7 +78,7 @@ def problem10():
     prime = 2
     while (prime < 2000000):
         answer += prime
-        prime = int(gmpy2.next_prime(prime))
+        prime = int(next_prime(prime))
     return answer
 
 
@@ -88,7 +87,7 @@ def problem12():
     factors = 0
     while (factors < 500):
         triangleNumber = 0.5*triangleTerm*(triangleTerm+1)
-        factors = len(eulermaths.list_factors(triangleNumber))
+        factors = len(list_factors(triangleNumber))
         triangleTerm += 1
     return triangleNumber
 
@@ -100,7 +99,7 @@ def problem13():
 
 
 def problem15():
-    return eulermaths.lattice_paths(20, 20)
+    return lattice_paths(20, 20)
 
 
 def problem16():
@@ -108,13 +107,13 @@ def problem16():
         
 
 def problem20():
-    return sum([int(digit) for digit in str(math.factorial(100))])
+    return sum([int(digit) for digit in str(factorial(100))])
 
 
 def problem21():
     answer = 0
     for i in range(1, 10000):
-        if (eulermaths.is_amicable(i)):
+        if (is_amicable(i)):
             answer += i
     return answer
 
@@ -126,7 +125,7 @@ def problem22():
         nameList = names.read().replace("\"", "").split(",")
         nameList = sorted(nameList)
     for name in nameList:
-        nameValue = eulermaths.word_value(name)*nameCount
+        nameValue = word_value(name)*nameCount
         answer += nameValue
         nameCount += 1
     return answer
@@ -137,7 +136,7 @@ def problem25():
     value = 0
     while (len(str(value)) < 1000):
         term += 1
-        value = eulermaths.fibonacci(term)
+        value = fibonacci(term)
     return term
 
 
@@ -147,7 +146,7 @@ def problem27():
     primeCount = 0
     for i in range(-999, 1000):
         for j in range(-999, 1000):
-            while (gmpy2.is_prime(abs(primeCount**2 + i*primeCount + j))):
+            while (is_prime(abs(primeCount**2 + i*primeCount + j))):
                 primeCount += 1
             if (primeCount > answerCount):
                 answerCount = primeCount
@@ -157,7 +156,7 @@ def problem27():
 
 
 def problem28():
-    return eulermaths.number_spiral(1001)
+    return number_spiral(1001)
 
 
 def problem29():
@@ -182,7 +181,7 @@ def problem30():
 def problem34():
     answer = 0
     for i in range(25, 2177282):   
-        if (sum([math.factorial(int(j)) for j in str(i)]) == i):
+        if (sum([factorial(int(j)) for j in str(i)]) == i):
             answer += i
     return answer
 
@@ -193,7 +192,7 @@ def problem35():
         number = str(i)
         isCircular = True
         for j in range(0, len(number)):
-            if (not gmpy2.is_prime(int(number))):
+            if (not is_prime(int(number))):
                 isCircular = False
                 break
             number = number[1:] + number[:1]
@@ -224,7 +223,7 @@ def problem42():
     with open('p42.txt', 'r') as file:
         wordList = file.read().replace("\"", "").split(",")
     for word in wordList:
-        wordValue = eulermaths.word_value(word)
+        wordValue = word_value(word)
         if (wordValue in triangleNumbers):
             answer += 1
     return answer

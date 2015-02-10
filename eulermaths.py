@@ -1,13 +1,12 @@
-import gmpy2
-import math
-import functools
+from gmpy2 import is_prime, next_prime
+from functools import lru_cache
 
 
 def list_multiples(multiple=1, lowerBound=0, upperBound=1000000):
     return [i for i in range(lowerBound, upperBound, multiple)]
 
 
-@functools.lru_cache(maxsize=128)
+lru_cache(maxsize=128)
 def fibonacci(number):
     if (number == 0):
         return 0
@@ -26,14 +25,14 @@ def list_factors(number):
 
 
 def list_prime_factors(number):
-    return [i for i in list_factors(number) if gmpy2.is_prime(i)]
+    return [i for i in list_factors(number) if is_prime(i)]
 
 
 def nth_prime(n):
     numberOfPrime = 1
     result = 2
     while (n > numberOfPrime):
-        result = gmpy2.next_prime(result)
+        result = next_prime(result)
         numberOfPrime += 1
     return int(result)
 
@@ -63,7 +62,7 @@ def word_value(word):
     return wordValue
 
     
-@functools.lru_cache(maxsize=128)
+lru_cache(maxsize=128)
 def lattice_paths(row, column):
     if (row == 0 or column == 0):
         return 1
