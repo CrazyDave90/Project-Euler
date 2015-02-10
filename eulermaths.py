@@ -1,18 +1,19 @@
 import gmpy2
 import math
-
-
-fibCache = {0:0, 1:1, 2:1, 3:2, 4:3, 5:5, 6:8, 7:13, 8:21, 9:34}
+import functools
 
 
 def list_multiples(multiple=1, lowerBound=0, upperBound=1000000):
     return [i for i in range(lowerBound, upperBound, multiple)]
 
 
+@functools.lru_cache(maxsize=128)
 def fibonacci(number):
-    while (number not in fibCache):
-            fibCache[len(fibCache)] = fibCache[len(fibCache)-1] + fibCache[len(fibCache)-2]
-    return fibCache[number]
+    if (number == 0):
+        return 0
+    elif (number <= 2):
+        return 1
+    return fibonacci(number-1) + fibonacci(number-2)
 
 
 def list_factors(number):
@@ -45,6 +46,12 @@ def is_amicable(number):
     return sum_factors(sum_factors(number)) == number and sum_factors(number) != number
 
 
+def number_spiral(dimension):
+    if (dimension == 1):
+        return 1
+    return 4*dimension**2 - 6*(dimension-1) + number_spiral(dimension-2)
+
+    
 def letter_value(letter):
     return ord(letter.upper()) - 64
 
@@ -54,4 +61,10 @@ def word_value(word):
     for letter in word.upper():
         wordValue += letter_value(letter)
     return wordValue
+
     
+@functools.lru_cache(maxsize=128)
+def lattice_paths(row, column):
+    if (row == 0 or column == 0):
+        return 1
+    return lattice_paths(row-1, column) + lattice_paths(row, column-1)

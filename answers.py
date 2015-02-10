@@ -99,6 +99,10 @@ def problem13():
     return str(sum(numberList))[:10]
 
 
+def problem15():
+    return eulermaths.lattice_paths(20, 20)
+
+
 def problem16():
     return sum([int(digit) for digit in str(2**1000)])
         
@@ -150,6 +154,10 @@ def problem27():
                 answer = i*j
             primeCount = 0
     return answer
+
+
+def problem28():
+    return eulermaths.number_spiral(1001)
 
 
 def problem29():
@@ -221,3 +229,19 @@ def problem42():
             answer += 1
     return answer
         
+
+def problem48():
+    seriesSum = 0
+    for i in range(1, 1001):
+        seriesSum += i**i
+    return str(seriesSum)[-10:]
+
+
+def problem56():
+    answer = 0
+    for i in range(1, 100):
+        for j in range(1, 100):
+            digitSum = sum(list(map(int, str(i**j))))
+            if (digitSum > answer):
+                answer = digitSum
+    return answer
