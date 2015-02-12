@@ -3,6 +3,8 @@ from gmpy2 import is_prime, next_prime, lcm
 from math import factorial
 from operator import mul
 from functools import reduce
+from num2words import num2words
+from itertools import count
 
 
 def problem1():
@@ -106,6 +108,14 @@ def problem16():
     return sum([int(digit) for digit in str(2**1000)])
         
 
+def problem17():
+    answer = 0
+    for i in range(1, 1001):
+        numberWord = num2words(i).replace("-", "").replace(" ", "")
+        answer += len(numberWord)
+    return answer
+
+    
 def problem20():
     return sum([int(digit) for digit in str(factorial(100))])
 
@@ -244,3 +254,15 @@ def problem56():
             if (digitSum > answer):
                 answer = digitSum
     return answer
+
+
+def problem62():
+    cubeList = {}
+    for i in count(1):
+        number = "".join(sorted(str(i**3)))
+        if (number in cubeList):
+            cubeList[number].append(i)
+        else:
+            cubeList[number] = [i]
+        if (len(cubeList[number]) == 5):
+            return min(cubeList[number])**3
