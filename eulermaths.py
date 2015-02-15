@@ -1,5 +1,6 @@
 from gmpy2 import is_prime, next_prime
-from functools import lru_cache
+from functools import lru_cache, reduce
+from operator import mul
 
 
 def list_multiples(multiple=1, lowerBound=0, upperBound=1000000):
@@ -67,3 +68,25 @@ def lattice_paths(row, column):
     if (row == 0 or column == 0):
         return 1
     return lattice_paths(row-1, column) + lattice_paths(row, column-1)
+
+
+def largest_product(grid):
+    products = []
+    gridT = list(map(list, zip(*grid)))
+    for i in range(0, 4):
+        products.append(reduce(mul, grid[i]))
+        products.append(reduce(mul, gridT[i]))
+    products.append(grid[0][0]*grid[1][1]*grid[2][2]*grid[3][3])
+    products.append(grid[3][0]*grid[2][1]*grid[1][2]*grid[0][3])
+    return max(products)
+
+
+collatz_cache = {1:1}
+lru_cache(maxsize=128)
+def collatz_length(number):
+    if (number not in collatz_cache):
+        if (number % 2 == 0):
+            collatz_cache[number] = 1 + collatz_length(number/2)
+        else:
+            collatz_cache[number] = 1 + collatz_length(3*number + 1)
+    return collatz_cache[number]

@@ -84,6 +84,21 @@ def problem10():
     return answer
 
 
+def problem11():
+    answers = []
+    with open('p11.txt', 'r') as file:
+        grid = file.read().split("\n")
+    for row in range(0, 20):
+        grid[row] = list(map(int, grid[row].split(" "))) 
+    for pos in range(0, 16):
+        for i in range(0, 16):
+            mGrid = grid[pos:pos+4]
+            for j in range(0, 4):
+                mGrid[j] = mGrid[j][i:i+4]
+            answers.append(largest_product(mGrid))
+    return max(answers)
+
+
 def problem12():
     triangleTerm = 1
     factors = 0
@@ -98,6 +113,17 @@ def problem13():
     with open('p13.txt', 'r') as file:
         numberList = list(map(int, file.read().split("\n")))
     return str(sum(numberList))[:10]
+
+
+def problem14():
+    answer = 0
+    answerLength = 0
+    for number in range(1, 1000000):
+        length = collatz_length(number)
+        if (length > answerLength):
+            answerLength = length
+            answer = number
+    return answer
 
 
 def problem15():
