@@ -1,10 +1,11 @@
 from eulermaths import *
 from gmpy2 import is_prime, next_prime, lcm
-from math import factorial
+from math import factorial, log10
 from operator import mul
 from functools import reduce
 from num2words import num2words
 from itertools import count
+from calendar import weekday
 
 
 def problem1():
@@ -141,6 +142,23 @@ def problem17():
         answer += len(numberWord)
     return answer
 
+
+def problem18():
+    with open('p18.txt', 'r') as file:
+        triangle = file.read().split("\n")
+    for row in range(0, len(triangle)):
+        triangle[row] = list(map(int, triangle[row].split(" ")))
+    return max_path_sum(triangle)[0]
+
+
+def problem19():
+    sundayCount = 0
+    for year in range(1901, 2001):
+        for month in range(1, 13):
+            if (weekday(year, month, 1) == 6):
+                sundayCcount += 1
+    return sundayCcount
+
     
 def problem20():
     return sum([int(digit) for digit in str(factorial(100))])
@@ -237,6 +255,25 @@ def problem35():
     return answer
 
 
+def problem37():
+    answer = 0
+    primeCount = 0
+    for number in count(11, 2):
+        isPrime = is_prime(number)
+        if (isPrime):
+            for j in range(1, len(str(number))):
+                if (not is_prime(int(number%10**j)) or
+                    not is_prime(int(number/10**j))
+                    ):
+                    isPrime = False
+                    break
+        if (isPrime):
+            primeCount += 1
+            answer += number
+        if (primeCount == 11):
+            return answer
+
+
 def problem39():
     answer = 0
     answerCount = 0
@@ -292,3 +329,25 @@ def problem62():
             cubeList[number] = [i]
         if (len(cubeList[number]) == 5):
             return min(cubeList[number])**3
+
+
+def problem67():
+    with open('p67.txt', 'r') as file:
+        triangle = file.read().split("\n")
+    for row in range(0, len(triangle)):
+        triangle[row] = list(map(int, triangle[row].split(" ")))
+    return max_path_sum(triangle)[0]
+
+
+def problem99():
+    answerValue = 0
+    answerLine = 0
+    with open('p99.txt', 'r') as file:
+        baseExp = file.read().split("\n")
+    for line in range(0, 1000):
+        baseExp[line] = list(map(int, baseExp[line].split(",")))
+        value = baseExp[line][1]*log10(baseExp[line][0])
+        if (value > answerValue):
+            answerValue = value
+            answerLine = line+1
+    return answerLine

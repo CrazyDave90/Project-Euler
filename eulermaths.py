@@ -7,13 +7,12 @@ def list_multiples(multiple=1, lowerBound=0, upperBound=1000000):
     return [i for i in range(lowerBound, upperBound, multiple)]
 
 
-lru_cache(maxsize=128)
+fib_cache = {0:0, 1:1, 2:1}
 def fibonacci(number):
-    if (number == 0):
-        return 0
-    elif (number <= 2):
-        return 1
-    return fibonacci(number-1) + fibonacci(number-2)
+    while (number not in fib_cache):
+        i = len(fib_cache)
+        fib_cache[i] = fib_cache[i-1] + fib_cache[i-2]
+    return fib_cache[number]
 
 
 def list_factors(number):
@@ -90,3 +89,15 @@ def collatz_length(number):
         else:
             collatz_cache[number] = 1 + collatz_length(3*number + 1)
     return collatz_cache[number]
+
+
+def max_path_sum(triangle):
+    for i in range(len(triangle)-2, -1, -1):
+        triangle[i] = max_path(triangle[i:i+2])
+    return triangle[0]
+
+
+def max_path(steps):
+    for i in range(0, len(steps[0])):
+        steps[0][i] += max(steps[1][i:i+2])
+    return steps[0]
