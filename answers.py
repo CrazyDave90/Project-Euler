@@ -150,11 +150,7 @@ def problem20():
 
 
 def problem21():
-    answer = 0
-    for i in range(1, 10000):
-        if (is_amicable(i)):
-            answer += i
-    return answer
+    return sum([i for i in range(10000) if is_amicable(i)])
 
 
 def problem22():
