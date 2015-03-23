@@ -34,12 +34,9 @@ def problem5():
 
 
 def problem6():
-    sumSquares = 0
-    squareSum = 0
-    for i in range(1, 101):
-        sumSquares += i**2
-        squareSum += i
-    squareSum = squareSum**2
+    n = 100
+    sumSquares = (n*(n+1)*(2*n+1))/6
+    squareSum = (0.5*n*(n+1))**2
     return squareSum - sumSquares
 
 
