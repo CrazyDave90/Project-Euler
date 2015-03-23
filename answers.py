@@ -24,9 +24,8 @@ def problem4():
     answer = 0
     for i in range(100, 1000):
         for j in range(i, 1000):
-            number = i*j
-            if (str(number) == str(number)[::-1] and number > answer):
-                answer = number
+            if (str(i*j) == str(i*j)[::-1]):
+                answer = max(answer, i*j)
     return answer
 
 
