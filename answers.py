@@ -86,13 +86,13 @@ def problem11():
 
 
 def problem12():
-    triangleTerm = 1
+    term = 1
     factors = 0
     while (factors < 500):
-        triangleNumber = 0.5*triangleTerm*(triangleTerm+1)
-        factors = len(list_factors(triangleNumber))
-        triangleTerm += 1
-    return triangleNumber
+        number = 0.5*term*(term+1)
+        factors = len(list_factors(number))
+        term += 1
+    return number
 
 
 def problem13():
@@ -129,7 +129,7 @@ def problem17():
 def problem18():
     with open('p18.txt', 'r') as file:
         triangle = file.read().split("\n")
-    for row in range(0, len(triangle)):
+    for row in range(len(triangle)):
         triangle[row] = list(map(int, triangle[row].split(" ")))
     return max_path_sum(triangle)[0]
 
@@ -174,15 +174,14 @@ def problem25():
 def problem27():
     answer = 0
     answerCount = 0
-    primeCount = 0
     for i in range(-999, 1000):
         for j in range(-999, 1000):
+            primeCount = 0
             while (is_prime(abs(primeCount**2 + i*primeCount + j))):
                 primeCount += 1
             if (primeCount > answerCount):
                 answerCount = primeCount
                 answer = i*j
-            primeCount = 0
     return answer
 
 
