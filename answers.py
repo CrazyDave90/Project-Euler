@@ -46,14 +46,11 @@ def problem7():
 
 def problem8():
     answer = 0
-    digits = []
-    with open('p8.txt', 'r') as number: 
-        digits.extend(number.read())
-        digits = list(map(int, digits))
+    with open('p8.txt', 'r') as number:
+        digits = list(map(int, number.read()))
     for i in range(0, 988):
         digitProduct = reduce(mul, digits[i:i+13])
-        if (digitProduct > answer):
-            answer = digitProduct
+        answer = max(answer, digitProduct)
     return answer
 
 
