@@ -135,12 +135,12 @@ def problem18():
 
 
 def problem19():
-    sundayCount = 0
+    sundays = 0
     for year in range(1901, 2001):
         for month in range(1, 13):
             if (weekday(year, month, 1) == 6):
-                sundayCcount += 1
-    return sundayCcount
+                sundays += 1
+    return sundays
 
     
 def problem20():
