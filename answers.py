@@ -104,10 +104,10 @@ def problem13():
 def problem14():
     answer = 0
     answerLength = 0
-    for n in range(1000000):
+    for n in range(1,1000000):
         if (collatz_length(n) > answerLength):
             answerLength = collatz_length(n)
-            answer = number
+            answer = n
     return answer
 
 
@@ -120,11 +120,10 @@ def problem16():
         
 
 def problem17():
-    answer = 0
+    answer = []
     for i in range(1, 1001):
-        numberWord = num2words(i).replace("-", "").replace(" ", "")
-        answer += len(numberWord)
-    return answer
+        answer.append(len(num2words(i).replace("-", "").replace(" ", "")))
+    return sum(answer)
 
 
 def problem18():
