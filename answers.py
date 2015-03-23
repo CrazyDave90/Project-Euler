@@ -155,11 +155,9 @@ def problem22():
     answer = 0
     nameCount = 1
     with open('p22.txt', 'r') as names:
-        nameList = names.read().replace("\"", "").split(",")
-        nameList = sorted(nameList)
+        nameList = sorted(names.read().replace("\"", "").split(","))
     for name in nameList:
-        nameValue = word_value(name)*nameCount
-        answer += nameValue
+        answer += word_value(name)*nameCount
         nameCount += 1
     return answer
 
