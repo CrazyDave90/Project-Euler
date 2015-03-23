@@ -9,10 +9,7 @@ from calendar import weekday
 
 
 def problem1():
-    answer = []
-    answer.extend(list_multiples(3, upperBound=1000))
-    answer.extend(list_multiples(5, upperBound=1000))
-    return sum(set(answer))
+    return sum([n for n in range(1000) if n % 3 == 0 or n % 5 == 0])
 
 
 def problem2():
@@ -300,7 +297,7 @@ def problem42():
         if (wordValue in triangleNumbers):
             answer += 1
     return answer
-        
+
 
 def problem48():
     seriesSum = 0
@@ -345,8 +342,8 @@ def problem99():
     with open('p99.txt', 'r') as file:
         baseExp = file.read().split("\n")
     for line in range(0, 1000):
-        baseExp[line] = list(map(int, baseExp[line].split(",")))
-        value = baseExp[line][1]*log10(baseExp[line][0])
+        number = list(map(int, baseExp[line].split(",")))
+        value = number[1]*log10(number[0])
         if (value > answerValue):
             answerValue = value
             answerLine = line+1
