@@ -48,7 +48,7 @@ def problem8():
     answer = 0
     with open('p8.txt', 'r') as number:
         digits = list(map(int, number.read()))
-    for i in range(0, 988):
+    for i in range(988):
         digitProduct = reduce(mul, digits[i:i+13])
         answer = max(answer, digitProduct)
     return answer
