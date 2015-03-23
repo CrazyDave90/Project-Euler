@@ -4,7 +4,7 @@ from math import factorial, log10
 from operator import mul
 from functools import reduce
 from num2words import num2words
-from itertools import count
+from itertools import count, permutations
 from calendar import weekday
 
 
@@ -268,6 +268,21 @@ def problem42():
         wordValue = word_value(word)
         if (wordValue in triangleNumbers):
             answer += 1
+    return answer
+
+
+def problem43():
+    answer = 0
+    for n in permutations("0123456789"):
+        n = "".join(n)
+        if (int(n[1:4]) % 2 == 0 and
+            int(n[2:5]) % 3 == 0 and
+            int(n[3:6]) % 5 == 0 and
+            int(n[4:7]) % 7 == 0 and
+            int(n[5:8]) % 11 == 0 and
+            int(n[6:9]) % 13 == 0 and
+            int(n[7:10]) % 17 == 0):
+            answer += int(n)
     return answer
 
 
