@@ -195,11 +195,7 @@ def problem28():
 
 
 def problem29():
-    answer = []
-    for a in range(2, 101):
-        for b in range(2, 101):
-            answer.append(a**b)
-    return len(set(answer))
+    return len(set([a**b for a in range(2,101) for b in range(2,101)]))
 
 
 def problem30():
