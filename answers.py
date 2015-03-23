@@ -218,17 +218,14 @@ def problem34():
 
 
 def problem35():
-    answer = 1
+    answer = 500000
     for i in range(3, 1000000, 2):
         number = str(i)
-        isCircular = True
         for j in range(0, len(number)):
             if (not is_prime(int(number))):
-                isCircular = False
+                answer -= 1
                 break
             number = number[1:] + number[:1]
-        if (isCircular):
-            answer += 1
     return answer
 
 
