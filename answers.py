@@ -13,12 +13,7 @@ def problem1():
 
 
 def problem2():
-    answer = 0
-    for i in range(2, 35):
-        value = fibonacci(i)
-        if (value % 2 == 0):
-            answer += value
-    return answer
+    return sum([fibonacci(n) for n in range(35) if fibonacci(n) % 2 == 0])
 
 
 def problem3():
