@@ -104,10 +104,9 @@ def problem13():
 def problem14():
     answer = 0
     answerLength = 0
-    for number in range(1, 1000000):
-        length = collatz_length(number)
-        if (length > answerLength):
-            answerLength = length
+    for n in range(1000000):
+        if (collatz_length(n) > answerLength):
+            answerLength = collatz_length(n)
             answer = number
     return answer
 
