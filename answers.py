@@ -56,9 +56,9 @@ def problem8():
 
 def problem9():
     for a in range (1, 334):
-        for b in range(a, 666):
-            if (a**2 + b**2 == (1000-a-b)**2):
-                return a*b*(1000-(a+b))
+        b = (500-a)/(1-(a/1000))
+        if b % 1 == 0:
+            return a*b*(1000-(a+b))
 
 
 def problem10():
