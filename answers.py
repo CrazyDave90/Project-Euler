@@ -322,6 +322,18 @@ def problem48():
     return str(seriesSum)[-10:]
 
 
+def problem52():
+    for number in count(1):
+        digits = sorted(str(number))
+        sameDigits = True
+        for multiple in range(2,7):
+            if sorted(str(number*multiple)) != digits:
+                sameDigits = False
+                break
+        if sameDigits:
+            return number
+
+
 def problem56():
     answer = 0
     for i in range(1, 100):
