@@ -1,6 +1,7 @@
 from gmpy2 import is_prime, next_prime
 from functools import lru_cache, reduce
 from operator import mul
+from math import sqrt
 
 
 def list_multiples(multiple=1, lowerBound=0, upperBound=1000000):
@@ -16,12 +17,24 @@ def fibonacci(number):
 
 
 def list_factors(number):
-    factors = [number]
-    for i in range(2, int(number**0.5)+1):
+    factors = set()
+    factors.add(number)
+    for i in range(2, int(sqrt(number))+1):
         if (number % i == 0):
-            factors.append(i)
-            factors.append(int(number/i))
+            factors.add(i)
+            factors.add(number/i)
     return factors
+
+
+def list_proper_divisors(number):
+    factors = list_factors(number)
+    factors.add(1)
+    factors.remove(number)
+    return factors
+
+
+def is_abundant(number):
+    return sum(list_proper_divisors(number)) > number
 
 
 def list_prime_factors(number):

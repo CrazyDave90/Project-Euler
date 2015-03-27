@@ -161,6 +161,19 @@ def problem22():
         nameCount += 1
     return answer
 
+
+def problem23():
+    abundantNums = set()
+    answer = 28122*(28123)/2 # sum of all numbers 1 to 28122
+    for number in range(1, 28123):
+        if is_abundant(number):
+            abundantNums.add(number)
+        for abundant in abundantNums:
+            if number-abundant in abundantNums:
+                answer -= number
+                break
+    return answer
+
             
 def problem25():
     term = 0
