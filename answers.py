@@ -244,6 +244,15 @@ def problem35():
     return answer
 
 
+def problem36():
+    answer = 0
+    for number in range(1, 10**6):
+        baseTwo = int(str(bin(number))[2:])
+        if is_palindrome(number) and is_palindrome(baseTwo):
+            answer += number
+    return answer
+
+
 def problem37():
     answer = 0
     primeCount = 0
