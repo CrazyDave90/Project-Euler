@@ -55,7 +55,8 @@ def sum_factors(number):
 
 
 def is_amicable(number):
-    return sum_factors(sum_factors(number)) == number and sum_factors(number) != number
+    return sum_factors(sum_factors(number)) == number and \
+           sum_factors(number) != number
 
 
 def number_spiral(dimension):
