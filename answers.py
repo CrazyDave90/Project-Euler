@@ -4,7 +4,7 @@ from math import factorial, log10
 from operator import mul
 from functools import reduce
 from num2words import num2words
-from itertools import count, permutations
+from itertools import count, permutations, islice
 from calendar import weekday
 
 
@@ -174,7 +174,14 @@ def problem23():
                 break
     return answer
 
-            
+
+def problem24():
+    p = permutations(['0','1','2','3','4','5','6','7','8','9'])
+    p = next(islice(p, 10**6-1, None), None) # -1 python offset
+    answer = ''.join(p)
+    return int(answer)
+
+
 def problem25():
     term = 0
     value = 0
