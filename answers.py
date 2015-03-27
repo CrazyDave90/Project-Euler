@@ -190,7 +190,7 @@ def problem28():
 
 
 def problem29():
-    return len(set([a**b for a in range(2,101) for b in range(2,101)]))
+    return len(set(a**b for a in range(2,101) for b in range(2,101)))
 
 
 def problem30():
@@ -322,7 +322,7 @@ def problem67():
         triangle[row] = list(map(int, triangle[row].split(" ")))
     return max_path_sum(triangle)[0]
 
-
+        
 def problem99():
     answerValue = 0
     answerLine = 0
