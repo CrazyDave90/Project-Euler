@@ -363,6 +363,14 @@ def problem67():
         triangle[row] = list(map(int, triangle[row].split(" ")))
     return max_path_sum(triangle)[0]
 
+
+def problem97():
+    number = 28433*2**7
+    for i in range(0, 7830450, 50):
+        number *= 2**50
+        number %= 10**10
+    return int(number+1)
+
         
 def problem99():
     answerValue = 0
