@@ -115,3 +115,9 @@ def max_path(steps):
     for i in range(0, len(steps[0])):
         steps[0][i] += max(steps[1][i:i+2])
     return steps[0]
+
+
+def is_palindrome(number):
+    if str(number) == str(number)[::-1]:
+        return True
+    return False

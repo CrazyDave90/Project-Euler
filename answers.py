@@ -21,12 +21,12 @@ def problem3():
 
 
 def problem4():
-    answer = 0
+    answer = []
     for i in range(100, 1000):
         for j in range(i, 1000):
-            if (str(i*j) == str(i*j)[::-1]):
-                answer = max(answer, i*j)
-    return answer
+            if (is_palindrome(str(i*j))):
+                answer.append(i*j)
+    return max(answer)
 
 
 def problem5():
