@@ -222,7 +222,7 @@ def problem30():
         if (digitSum == i):
             answer += i
     return answer
-
+    
 
 def problem34():
     answer = 0
@@ -333,6 +333,16 @@ def problem52():
         if sameDigits:
             return number
 
+
+def problem53():
+    answer = 0
+    for n in range(1, 101):
+        for r in range(1, n):
+            combos = factorial(n)/(factorial(r)*factorial(n-r))
+            if combos > 10**6:
+                answer += 1
+    return answer
+    
 
 def problem56():
     answer = 0
