@@ -6,6 +6,7 @@ from functools import reduce
 from num2words import num2words
 from itertools import count, permutations, islice
 from calendar import weekday
+from fractions import Fraction
 
 
 def problem1():
@@ -351,6 +352,17 @@ def problem56():
             digitSum = sum(list(map(int, str(i**j))))
             if (digitSum > answer):
                 answer = digitSum
+    return answer
+
+
+def problem57():
+    answer = 0
+    x = 2
+    for expansion in range(1, 1000):
+        x = 2 + Fraction(1,x)
+        approx = 1 + Fraction(1,x)
+        if digits(approx.numerator) > digits(approx.denominator):
+            answer += 1
     return answer
 
 
