@@ -386,6 +386,13 @@ def problem67():
     return max_path_sum(triangle)[0]
 
 
+def problem71():
+    for denominator in range(10**6, 0, -1):
+        numerator = (3*denominator-1)/7 # constraint, -1 means fraction must be lower than 3/7
+        if numerator % 1 == 0:
+            return int(numerator)
+        
+    
 def problem97():
     number = 28433*2**7
     for i in range(0, 7830450, 50):
