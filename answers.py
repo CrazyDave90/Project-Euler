@@ -323,6 +323,19 @@ def problem48():
     return str(seriesSum)[-10:]
 
 
+def problem50():
+    primes = [n for n in range(1000000) if is_prime(n)]
+    answer = [0,0]
+    for i in range(len(primes)):
+        for j in range(i,-1,-1):
+            primeCandidate = sum(primes[j:i])
+            if primeCandidate > 1000000:
+                break
+            if is_prime(primeCandidate) and i-j > answer[1]:
+                answer = [primeCandidate, i-j]
+    return answer[0]
+            
+
 def problem52():
     for number in count(1):
         digits = sorted(str(number))
