@@ -4,7 +4,7 @@ from math import factorial, log10
 from operator import mul
 from functools import reduce
 from num2words import num2words
-from itertools import count, permutations, islice
+from itertools import count, permutations, combinations, islice
 from calendar import weekday
 from fractions import Fraction
 
@@ -190,7 +190,7 @@ def problem25():
         term += 1
         value = fibonacci(term)
     return term
-
+        
 
 def problem27():
     answer = 0
@@ -321,6 +321,25 @@ def problem48():
     for i in range(1, 1001):
         seriesSum += i**i
     return str(seriesSum)[-10:]
+
+
+def problem49():
+    primes = [n for n in range(1000,10000) if is_prime(n) and len(set(str(n))) >= 3]
+    primes.remove(1487)
+    while True:
+        primeCount = 0
+        primePermutations = []
+        for prime in permutations(str(primes[0])):
+            n = int(''.join(prime))
+            if n in primes:
+                primeCount += 1
+                primePermutations.append(primes.pop(primes.index(n)))
+        if primeCount >= 3:
+            for c in combinations(primePermutations, 3):
+                combo = sorted(c)
+                if combo[2]-combo[1] == combo[1]-combo[0]:
+                    return int(str(combo[0])+str(combo[1])+str(combo[2]))
+                
 
 
 def problem50():
