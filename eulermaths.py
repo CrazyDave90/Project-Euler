@@ -38,7 +38,7 @@ def is_abundant(number):
 
 
 def list_prime_factors(number):
-    return [i for i in list_factors(number) if is_prime(i)]
+    return [i for i in list_factors(number) if is_prime(int(i))]
 
 
 def nth_prime(n):
