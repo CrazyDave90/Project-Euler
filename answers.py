@@ -419,10 +419,12 @@ def problem67():
 
 
 def problem71():
-    for denominator in range(10**6, 0, -1):
-        numerator = (3*denominator-1)/7 # constraint, -1 means fraction must be lower than 3/7
-        if numerator % 1 == 0:
-            return int(numerator)
+    expansion = int(10**6 / 7)
+    numerator = 3*expansion - 1
+    denominator = 7*expansion
+    while Fraction(numerator,denominator) < Fraction(3,7):
+        denominator -= 1
+    return Fraction(numerator,denominator+1)
         
     
 def problem97():
