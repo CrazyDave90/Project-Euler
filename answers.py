@@ -312,10 +312,8 @@ def problem43():
 
 
 def problem48():
-    seriesSum = 0
-    for i in range(1, 1001):
-        seriesSum += i**i
-    return str(seriesSum)[-10:]
+    seriesSum = sum(i**i for i in range(1, 1001))
+    return seriesSum % 10**10
 
 
 def problem49():
