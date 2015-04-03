@@ -4,7 +4,7 @@ from math import factorial, log10
 from operator import mul
 from functools import reduce
 from num2words import num2words
-from itertools import count, permutations, combinations, islice
+from itertools import count, permutations, combinations, islice, product
 from calendar import weekday
 from fractions import Fraction
 
@@ -209,7 +209,7 @@ def problem28():
 
 
 def problem29():
-    return len(set(a**b for a in range(2, 101) for b in range(2, 101)))
+    return len(set(a**b for (a,b) in product(range(2, 101), repeat=2)))
 
 
 def problem30():
@@ -224,12 +224,8 @@ def problem30():
 
 
 def problem34():
-    answer = 0
-    for i in range(25, 2177282):
-        factorialDigits = [factorial(int(j)) for j in str(i)]
-        if (sum(factorialDigits) == i):
-            answer += i
-    return answer
+    return sum(i for i in range(25, 2177282) if
+        sum(factorial(int(j)) for j in str(i)) == i)
 
 
 def problem35():
