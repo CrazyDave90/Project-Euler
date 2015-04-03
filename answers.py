@@ -56,7 +56,7 @@ def problem8():
 
 
 def problem9():
-    for a in range (1, 334):
+    for a in range(1, 334):
         b = (500-a)/(1-(a/1000))
         if b % 1 == 0:
             return a*b*(1000-(a+b))
@@ -76,7 +76,7 @@ def problem11():
     with open('p11.txt', 'r') as file:
         grid = file.read().split("\n")
     for row in range(0, 20):
-        grid[row] = list(map(int, grid[row].split(" "))) 
+        grid[row] = list(map(int, grid[row].split(" ")))
     for pos in range(0, 16):
         for i in range(0, 16):
             mGrid = grid[pos:pos+4]
@@ -88,10 +88,10 @@ def problem11():
 
 def problem12():
     term = 1
-    factors = 0
-    while (factors < 500):
-        number = 0.5*term*(term+1)
-        factors = len(list_factors(number))
+    numFactors = 0
+    while (numFactors < 500):
+        number = term*(term+1)/2
+        numFactors = len(list_factors(number))
         term += 1
     return number
 
@@ -105,7 +105,7 @@ def problem13():
 def problem14():
     answer = 0
     answerLength = 0
-    for n in range(1,1000000):
+    for n in range(1, 1000000):
         if (collatz_length(n) > answerLength):
             answerLength = collatz_length(n)
             answer = n
@@ -118,7 +118,7 @@ def problem15():
 
 def problem16():
     return sum([int(digit) for digit in str(2**1000)])
-        
+
 
 def problem17():
     answer = []
@@ -143,7 +143,7 @@ def problem19():
                 sundays += 1
     return sundays
 
-    
+
 def problem20():
     return sum([int(digit) for digit in str(factorial(100))])
 
@@ -165,7 +165,7 @@ def problem22():
 
 def problem23():
     abundantNums = set()
-    answer = 28122*(28123)/2 # sum of all numbers 1 to 28122
+    answer = 28122*(28123)/2  # sum of numbers 1 to 28122
     for number in range(1, 28123):
         if is_abundant(number):
             abundantNums.add(number)
@@ -177,20 +177,18 @@ def problem23():
 
 
 def problem24():
-    p = permutations(['0','1','2','3','4','5','6','7','8','9'])
-    p = next(islice(p, 10**6-1, None), None) # -1 python offset
+    p = permutations(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])
+    p = next(islice(p, 10**6-1, None), None)  # -1 offset
     answer = ''.join(p)
     return int(answer)
 
 
 def problem25():
-    term = 0
-    value = 0
-    while (len(str(value)) < 1000):
+    term = 1
+    while (digits(fibonacci(term)) < 1000):
         term += 1
-        value = fibonacci(term)
     return term
-        
+
 
 def problem27():
     answer = 0
@@ -211,7 +209,7 @@ def problem28():
 
 
 def problem29():
-    return len(set(a**b for a in range(2,101) for b in range(2,101)))
+    return len(set(a**b for a in range(2, 101) for b in range(2, 101)))
 
 
 def problem30():
@@ -223,12 +221,13 @@ def problem30():
         if (digitSum == i):
             answer += i
     return answer
-    
+
 
 def problem34():
     answer = 0
-    for i in range(25, 2177282):   
-        if (sum([factorial(int(j)) for j in str(i)]) == i):
+    for i in range(25, 2177282):
+        factorialDigits = [factorial(int(j)) for j in str(i)]
+        if (sum(factorialDigits) == i):
             answer += i
     return answer
 
@@ -261,9 +260,9 @@ def problem37():
         isPrime = is_prime(number)
         if (isPrime):
             for j in range(1, len(str(number))):
-                if (not is_prime(int(number%10**j)) or
-                    not is_prime(int(number/10**j))
-                    ):
+                cond1 = not is_prime(int(number % 10**j))
+                cond2 = not is_prime(int(number / 10**j))
+                if (cond1 or cond2):
                     isPrime = False
                     break
         if (isPrime):
@@ -276,7 +275,7 @@ def problem37():
 def problem39():
     answer = 0
     answerCount = 0
-    for p in range (1, 1001):
+    for p in range(1, 1001):
         count = 0
         for a in range(1, int(p/3)):
             b = int((p*(p - 2*a))/(2*(p - a)))
@@ -306,12 +305,12 @@ def problem43():
     for n in permutations("0123456789"):
         n = "".join(n)
         if (int(n[1:4]) % 2 == 0 and
-            int(n[2:5]) % 3 == 0 and
-            int(n[3:6]) % 5 == 0 and
-            int(n[4:7]) % 7 == 0 and
-            int(n[5:8]) % 11 == 0 and
-            int(n[6:9]) % 13 == 0 and
-            int(n[7:10]) % 17 == 0):
+                int(n[2:5]) % 3 == 0 and
+                int(n[3:6]) % 5 == 0 and
+                int(n[4:7]) % 7 == 0 and
+                int(n[5:8]) % 11 == 0 and
+                int(n[6:9]) % 13 == 0 and
+                int(n[7:10]) % 17 == 0):
             answer += int(n)
     return answer
 
@@ -324,7 +323,8 @@ def problem48():
 
 
 def problem49():
-    primes = [n for n in range(1000,10000) if is_prime(n) and len(set(str(n))) >= 3]
+    primes = [n for n in range(1000, 10000) if is_prime(n) and
+              len(set(str(n))) >= 3]
     primes.remove(1487)
     while True:
         primeCount = 0
@@ -339,27 +339,26 @@ def problem49():
                 combo = sorted(c)
                 if combo[2]-combo[1] == combo[1]-combo[0]:
                     return int(str(combo[0])+str(combo[1])+str(combo[2]))
-                
 
 
 def problem50():
     primes = [n for n in range(1000000) if is_prime(n)]
-    answer = [0,0]
+    answer = [0, 0]
     for i in range(len(primes)):
-        for j in range(i,-1,-1):
+        for j in range(i, -1, -1):
             primeCandidate = sum(primes[j:i])
             if primeCandidate > 1000000:
                 break
             if is_prime(primeCandidate) and i-j > answer[1]:
                 answer = [primeCandidate, i-j]
     return answer[0]
-            
+
 
 def problem52():
     for number in count(1):
         digits = sorted(str(number))
         sameDigits = True
-        for multiple in range(2,7):
+        for multiple in range(2, 7):
             if sorted(str(number*multiple)) != digits:
                 sameDigits = False
                 break
@@ -375,7 +374,7 @@ def problem53():
             if combos > 10**6:
                 answer += 1
     return answer
-    
+
 
 def problem56():
     answer = 0
@@ -391,8 +390,8 @@ def problem57():
     answer = 0
     x = 2
     for expansion in range(1, 1000):
-        x = 2 + Fraction(1,x)
-        approx = 1 + Fraction(1,x)
+        x = 2 + Fraction(1, x)
+        approx = 1 + Fraction(1, x)
         if digits(approx.numerator) > digits(approx.denominator):
             answer += 1
     return answer
@@ -422,11 +421,11 @@ def problem71():
     expansion = int(10**6 / 7)
     numerator = 3*expansion - 1
     denominator = 7*expansion
-    while Fraction(numerator,denominator) < Fraction(3,7):
+    while Fraction(numerator, denominator) < Fraction(3, 7):
         denominator -= 1
-    return Fraction(numerator,denominator+1)
-        
-    
+    return Fraction(numerator, denominator+1)
+
+
 def problem97():
     number = 28433*2**7
     for i in range(0, 7830450, 50):
@@ -434,7 +433,7 @@ def problem97():
         number %= 10**10
     return int(number+1)
 
-        
+
 def problem99():
     answerValue = 0
     answerLine = 0

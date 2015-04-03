@@ -1,7 +1,8 @@
 from gmpy2 import is_prime, next_prime
 from functools import lru_cache, reduce
 from operator import mul
-from math import sqrt, log10
+from math import sqrt, log10, floor, ceil
+from itertools import groupby
 
 
 def list_multiples(multiple=1, lowerBound=0, upperBound=1000000):
@@ -125,3 +126,5 @@ def is_palindrome(number):
 
 def digits(number):
     return int(log10(number))+1
+
+
